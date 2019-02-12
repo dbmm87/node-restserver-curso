@@ -16,7 +16,7 @@ app.post('/loguin',(req,res)=>{
             return res.status(500).json({ ok: false, err });
         }
         if(!usuarioDB){
-            return res.status(400).json({ ok: false, err:{message:'Usuario o contraseña incorrecta'} });
+            return res.status(400).json({ ok: false, err:{ message:'Usuario o contraseña incorrecta'} });
         }
         if(!bcrypt.compareSync(body.password,usuarioDB.password)){
             return res.status(400).json({ ok: false, err: { message: 'Usuario o contraseña incorrecta' } });
@@ -73,7 +73,7 @@ app.post("/google", async (req, res) => {
         if(usuarioDB){
             if(usuarioDB.google === false){
                 console.log(usuarioDB);
-                return res.status(500).json({ ok: false, err:{message:"Usuario ya existe"} }); 
+                return res.status(500).json({ ok: false, err:{ message:"Usuario ya existe" } }); 
             }else{
                 let token = jwt.sign(
                     {
