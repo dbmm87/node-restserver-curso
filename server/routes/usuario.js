@@ -99,12 +99,10 @@ app.put("/usuario/:id", [verificaToken, verificaAdminRole], function(req, res) {
 });
 app.delete("/usuario/:id", [verificaToken, verificaAdminRole], function(req, res) {
   let id = req.params.id;
-
   Usuario.findByIdAndUpdate(id, { status: false }, (err, userDelete) => {
     if (err) {
       return res.status(400).json({ ok: false, err });
     }
-    console.log(userDelete.status);
     if (userDelete !== false) {
       return res.status(400).json({
         ok: false,
